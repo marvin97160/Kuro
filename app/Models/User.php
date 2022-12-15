@@ -18,10 +18,31 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nom',
+        'prenom',
+        'adresse',
+        'complement_adresse',
+        'code_postale',
+        'pays',
+        'telephone',
         'email',
         'password',
+        'libelle',
+        'role_id',
     ];
+    public function role(){
+
+        return $this->belongsTo(Role::class);
+        // Elle permet de montrer a relation  1 . N  entre un user et un role
+    }
+    public function commandes(){
+        return $this->hasMany(Commande::class);
+        // Elle permet de montrer a relation N . 1 entre un user et un role
+    }
+     public function suggestions(){
+        return $this->hasMany(Suggestion::class);
+        // Elle permet de montrer a relation  1 . N  entre un user et un role
+    }
 
     /**
      * The attributes that should be hidden for serialization.
